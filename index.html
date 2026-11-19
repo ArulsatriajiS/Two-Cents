@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth scroll-pt-20 overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Cents Coffee — Brew Believer</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-sage-olive': '#5C7356',
+                        'brand-amber': '#C27D38',
+                        'brand-deep-sage': '#4B6345',
+                        'bg-light-primary': '#FAF9F6',
+                        'bg-dark-primary': '#131614',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        /* Initial state for pop-up transition */
+        .pop-up-element {
+            opacity: 0;
+            transform: translateY(32px) scale(0.96);
+            transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .pop-up-element.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    </style>
+</head>
+<body class="bg-bg-light-primary dark:bg-bg-dark-primary text-gray-800 dark:text-gray-100 min-h-screen">
+
+    <!-- Navbar Fixed & Semi-Transparan Dinamis (Glassmorphism) -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300
+                bg-black/25 backdrop-blur-[2px] border-b border-white/10
+                dark:bg-black/25 dark:backdrop-blur-[2px] dark:border-b dark:border-white/10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center h-16">
+            <div class="flex items-center">
+                <a href="#" class="flex items-center space-x-2 text-white dark:text-white">
+                    <img src="./assets/img/logo.jpg" alt="Two Cents Coffee Logo" class="h-10 w-10 rounded-lg object-cover">
+                    <span class="font-heading text-xl font-extrabold">Two Cents</span>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#keunggulan" class="text-white hover:text-brand-amber dark:hover:text-brand-amber transition-colors font-medium">Keunggulan</a>
+                <a href="#menu" class="text-white hover:text-brand-amber dark:hover:text-brand-amber transition-colors font-medium">Menu</a>
+                <a href="#lokasi" class="text-white hover:text-brand-amber dark:hover:text-brand-amber transition-colors font-medium">Lokasi</a>
+                <!-- Dark/Light Mode Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-full focus:outline-none text-white hover:bg-white/20 dark:hover:bg-black/20 transition-colors">
+                    <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                    <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                </button>
+                <a href="https://wa.me/6281200000000?text=Halo%20Two%20Cents%2C%20saya%20ingin%20reservasi%20meja." target="_blank" class="bg-brand-amber hover:bg-brand-deep-sage text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all duration-300">
+                    Reservasi Meja
+                </a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center space-x-2">
+                <!-- Dark/Light Mode Toggle for Mobile -->
+                <button id="theme-toggle-mobile" class="p-2 rounded-full focus:outline-none text-white hover:bg-white/20 dark:hover:bg-black/20 transition-colors">
+                    <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                    <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                </button>
+                <button id="mobile-menu-button" class="text-white focus:outline-none hover:bg-white/20 p-2 rounded-md">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-950/90 backdrop-blur-md pb-4 pt-2">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
+                <a href="#keunggulan" class="text-gray-800 dark:text-gray-100 hover:text-brand-amber dark:hover:text-brand-amber block px-3 py-2 rounded-md text-base font-medium">Keunggulan</a>
+                <a href="#menu" class="text-gray-800 dark:text-gray-100 hover:text-brand-amber dark:hover:text-brand-amber block px-3 py-2 rounded-md text-base font-medium">Menu</a>
+                <a href="#lokasi" class="text-gray-800 dark:text-gray-100 hover:text-brand-amber dark:hover:text-brand-amber block px-3 py-2 rounded-md text-base font-medium">Lokasi</a>
+                <a href="https://wa.me/6281200000000?text=Halo%20Two%20Cents%2C%20saya%20ingin%20reservasi%20meja." target="_blank" class="w-auto text-center mt-4 bg-brand-amber hover:bg-brand-deep-sage text-white font-semibold py-2 px-5 rounded-lg shadow-md transition-all duration-300">
+                    Reservasi Meja
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative bg-cover bg-center min-h-[100svh] flex items-center justify-center text-center px-4"
+        style="background-image: url('./assets/img/hero.jpg');">
+        <div class="absolute inset-0 bg-black/50 dark:bg-black/70"></div> <!-- Overlay -->
+        <div class="relative z-10 max-w-2xl mx-auto space-y-6 pop-up-element" style="transition-delay: 0ms;">
+            <span class="inline-block bg-brand-deep-sage text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md pop-up-element" style="transition-delay: 80ms;">
+                Buka 07.00 – 23.00 • Cimanuk, Bandung
+            </span>
+            <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight pop-up-element" style="transition-delay: 160ms;">
+                Kopi Spesialti & Ruang Santai di Cimanuk.
+            </h1>
+            <p class="text-lg text-white/90 max-w-prose mx-auto pop-up-element" style="transition-delay: 240ms;">
+                Nikmati seduhan kopi roastery sendiri, menu makan lengkap, dan area courtyard teduh sejak pagi.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
+                <a href="https://wa.me/6281200000000?text=Halo%20Two%20Cents%2C%20saya%20ingin%20reservasi%20meja." target="_blank" class="pop-up-element bg-brand-amber hover:bg-brand-deep-sage text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 w-full sm:w-auto text-lg" style="transition-delay: 320ms;">
+                    Reservasi via WhatsApp
+                </a>
+                <a href="#menu" class="pop-up-element bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 w-full sm:w-auto text-lg border border-white/30" style="transition-delay: 400ms;">
+                    Lihat Menu
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Keunggulan Section -->
+    <section id="keunggulan" class="py-16 md:py-20 bg-bg-light-primary dark:bg-bg-dark-primary">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-12 pop-up-element">
+                Keunggulan Kami
+            </h2>
+            <p class="text-center text-lg max-w-2xl mx-auto mb-16 dark:text-gray-300 pop-up-element" style="transition-delay: 80ms;">
+                Fokus pada kualitas, kenyamanan, dan pengalaman lengkap untuk Anda.
+            </p>
+
+            <!-- Keunggulan Cards - Horizontal Swipe on Mobile -->
+            <div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 sm:pb-0 sm:mx-0 sm:px-0 no-scrollbar">
+                <!-- Card 1 -->
+                <div class="w-[82vw] max-w-[320px] shrink-0 snap-center sm:w-auto sm:max-w-none pop-up-element" style="transition-delay: 160ms;">
+                    <div class="bg-white dark:bg-stone-900 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-stone-800 h-full flex flex-col">
+                        <i data-lucide="coffee" class="w-8 h-8 text-brand-sage-olive mb-4"></i>
+                        <h3 class="font-heading text-xl font-semibold mb-2">Roastery Biji Kopi Sendiri</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm flex-grow">Biji kopi segar disangrai langsung untuk menjaga konsistensi rasa setiap cangkir.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="w-[82vw] max-w-[320px] shrink-0 snap-center sm:w-auto sm:max-w-none pop-up-element" style="transition-delay: 240ms;">
+                    <div class="bg-white dark:bg-stone-900 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-stone-800 h-full flex flex-col">
+                        <i data-lucide="leaf" class="w-8 h-8 text-brand-sage-olive mb-4"></i>
+                        <h3 class="font-heading text-xl font-semibold mb-2">Area Courtyard Luas & Teduh</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm flex-grow">Pilihan ruang indoor ber-AC dan taman terbuka yang nyaman untuk kerja maupun diskusi.</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="w-[82vw] max-w-[320px] shrink-0 snap-center sm:w-auto sm:max-w-none pop-up-element" style="transition-delay: 320ms;">
+                    <div class="bg-white dark:bg-stone-900 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-stone-800 h-full flex flex-col">
+                        <i data-lucide="book-open" class="w-8 h-8 text-brand-sage-olive mb-4"></i>
+                        <h3 class="font-heading text-xl font-semibold mb-2">Menu Lengkap Pagi hingga Malam</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm flex-grow">Tersedia kopi manual brew, matcha, hingga pasta dan hidangan berat sejak pukul 07.00.</p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-8 sm:hidden">Geser ke samping &rarr;</p>
+        </div>
+    </section>
+
+    <!-- Katalog Menu Section -->
+    <section id="menu" class="py-16 md:py-20 bg-bg-light-primary dark:bg-bg-dark-primary">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-12 pop-up-element">
+                Katalog Menu
+            </h2>
+            <p class="text-center text-lg max-w-2xl mx-auto mb-16 dark:text-gray-300 pop-up-element" style="transition-delay: 80ms;">
+                Pilihan kopi dan hidangan terbaik untuk setiap selera.
+            </p>
+
+            <!-- Menu Cards - Horizontal Swipe on Mobile, Grid on Tablet/Desktop -->
+            <div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 sm:pb-0 sm:mx-0 sm:px-0 no-scrollbar">
+                <!-- Card 1: Signature Cold Brew Cream -->
+                <div class="w-[82vw] max-w-[320px] shrink-0 snap-center sm:w-auto sm:max-w-none pop-up-element" style="transition-delay: 160ms;">
+                    <div class="bg-white dark:bg-stone-900 rounded-xl shadow-sm border border-gray-200 dark:border-stone-800 h-full flex flex-col">
+                        <img src="./assets/img/menu-cold-brew.jpg" alt="Signature Cold Brew Cream" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-4 flex-grow">
+                            <h3 class="font-heading text-lg font-semibold mb-1">Signature Cold Brew Cream</h3>
+                            <p class="text-brand-amber font-bold text-base mb-2">Rp 38.000</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow">Espresso cold brew house-blend dengan lapisan krim lembut dan aroma karamel.</p>
+                            <a href="https://wa.me/6281200000000?text=Halo%20Two%20Cents%2C%20saya%20ingin%20pesan%20Signature%20Cold%20Brew%20Cream." target="_blank" class="block text-center bg-brand-sage-olive hover:bg-brand-deep-sage text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm">
+                                Pesan Ini
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2: Ceremonial Iced Matcha Latte -->
+                <div class="w-[82vw] max-w-[320px] shrink-0 snap-center sm:w-auto sm:max-w-none pop-up-element" style="transition-delay: 240ms;">
+                    <div class="bg-white dark:bg-stone-900 rounded-xl shadow-sm border border-gray-200 dark:border-stone-800 h-full flex flex-col">
+                        <img src="./assets/img/menu-matcha.jpg" alt="Ceremonial Iced Matcha Latte" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-4 flex-grow">
+                            <h3 class="font-heading text-lg font-semibold mb-1">Ceremonial Iced Matcha Latte</h3>
+                            <p class="text-brand-amber font-bold text-base mb-2">Rp 42.000</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow">Matcha grade seremonial dikocok segar dengan susu dingin bertekstur creamy.</p>
+                            <a href="https://wa.me/6281200000000?text=Halo%20Two%20Cents%2C%20saya%20ingin%20pesan%20Ceremonial%20Iced%20Matcha%20Latte." target="_blank" class="block text-center bg-brand-sage-olive hover:bg-brand-deep-sage text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm">
+                                Pesan Ini
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3: Seafood Aglio Olio Pasta -->
+                <div class="w-[82vw] max-w-[320px] shrink-0 snap-center sm:w-auto sm:max-w-none pop-up-element" style="transition-delay: 320ms;">
+                    <div class="bg-white dark:bg-stone-900 rounded-xl shadow-sm border border-gray-200 dark:border-stone-800 h-full flex flex-col">
+                        <img src="./assets/img/menu-aglio-olio.jpg" alt="Seafood Aglio Olio Pasta" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-4 flex-grow">
+                            <h3 class="font-heading text-lg font-semibold mb-1">Seafood Aglio Olio Pasta</h3>
+                            <p class="text-brand-amber font-bold text-base mb-2">Rp 68.000</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow">Spaghetti al dente tumis bawang putih dan udang segar berbumbu gurih.</p>
+                            <a href="https://wa.me/6281200000000?text=Halo%20Two%20Cents%2C%20saya%20ingin%20pesan%20Seafood%20Aglio%20Olio%20Pasta." target="_blank" class="block text-center bg-brand-sage-olive hover:bg-brand-deep-sage text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm">
+                                Pesan Ini
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4: Manual Brew & House Roastery -->
+                <div class="w-[82vw] max-w-[320px] shrink-0 snap-center sm:w-auto sm:max-w-none pop-up-element" style="transition-delay: 400ms;">
+                    <div class="bg-white dark:bg-stone-900 rounded-xl shadow-sm border border-gray-200 dark:border-stone-800 h-full flex flex-col">
+                        <img src="./assets/img/menu-manual-brew.jpg" alt="Manual Brew & House Roastery" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-4 flex-grow">
+                            <h3 class="font-heading text-lg font-semibold mb-1">Manual Brew & House Roastery</h3>
+                            <p class="text-brand-amber font-bold text-base mb-2">Mulai Rp 35.000</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow">Pilihan biji kopi single origin sangrai sendiri diseduh presisi oleh barista.</p>
+                            <a href="https://wa.me/6281200000000?text=Halo%20Two%20Cents%2C%20saya%20ingin%20pesan%20Manual%20Brew%20dan%20House%20Roastery." target="_blank" class="block text-center bg-brand-sage-olive hover:bg-brand-deep-sage text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm">
+                                Pesan Ini
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 5: Table Service & Coffee Pairing -->
+                <div class="w-[82vw] max-w-[320px] shrink-0 snap-center sm:w-auto sm:max-w-none pop-up-element" style="transition-delay: 480ms;">
+                    <div class="bg-white dark:bg-stone-900 rounded-xl shadow-sm border border-gray-200 dark:border-stone-800 h-full flex flex-col">
+                        <img src="./assets/img/menu-table-service.jpg" alt="Table Service & Coffee Pairing" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-4 flex-grow">
+                            <h3 class="font-heading text-lg font-semibold mb-1">Table Service & Coffee Pairing</h3>
+                            <p class="text-brand-amber font-bold text-base mb-2">Mulai Rp 55.000</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow">Paket kopi dan hidangan pendamping hangat untuk sarapan maupun makan siang.</p>
+                            <a href="https://wa.me/6281200000000?text=Halo%20Two%20Cents%2C%20saya%20ingin%20pesan%20Table%20Service%20dan%20Coffee%20Pairing." target="_blank" class="block text-center bg-brand-sage-olive hover:bg-brand-deep-sage text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm">
+                                Pesan Ini
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 6: Outdoor Courtyard & WFC Spot -->
+                <div class="w-[82vw] max-w-[320px] shrink-0 snap-center sm:w-auto sm:max-w-none pop-up-element" style="transition-delay: 560ms;">
+                    <div class="bg-white dark:bg-stone-900 rounded-xl shadow-sm border border-gray-200 dark:border-stone-800 h-full flex flex-col">
+                        <img src="./assets/img/menu-outdoor-courtyard.jpg" alt="Outdoor Courtyard & WFC Spot" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-4 flex-grow">
+                            <h3 class="font-heading text-lg font-semibold mb-1">Outdoor Courtyard & WFC Spot</h3>
+                            <p class="text-brand-amber font-bold text-base mb-2">Reservasi Meja</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow">Area duduk indoor-outdoor teduh di kawasan Cimanuk yang nyaman untuk kerja.</p>
+                            <a href="https://wa.me/6281200000000?text=Halo%20Two%20Cents%2C%20saya%20ingin%20reservasi%20meja%20di%20Outdoor%20Courtyard." target="_blank" class="block text-center bg-brand-sage-olive hover:bg-brand-deep-sage text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm">
+                                Pesan Ini
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-8 sm:hidden">Geser ke samping &rarr;</p>
+        </div>
+    </section>
+
+    <!-- Ulasan Pelanggan Section -->
+    <section id="ulasan" class="py-16 md:py-20 bg-bg-light-primary dark:bg-bg-dark-primary">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-12 pop-up-element">
+                Ulasan Pelanggan
+            </h2>
+            <p class="text-center text-lg max-w-2xl mx-auto mb-16 dark:text-gray-300 pop-up-element" style="transition-delay: 80ms;">
+                Apa kata mereka tentang Two Cents Coffee.
+            </p>
+
+            <!-- Ulasan Cards - Horizontal Swipe on Mobile -->
+            <div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 sm:pb-0 sm:mx-0 sm:px-0 no-scrollbar">
+                <!-- Ulasan 1 -->
+                <div class="w-[82vw] max-w-[320px] shrink-0 snap-center sm:w-auto sm:max-w-none pop-up-element" style="transition-delay: 160ms;">
+                    <div class="bg-white dark:bg-stone-900 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-stone-800 h-full flex flex-col">
+                        <div class="flex items-center mb-3">
+                            <span class="text-brand-amber text-lg mr-1">&#9733;</span>
+                            <span class="text-brand-amber text-lg mr-1">&#9733;</span>
+                            <span class="text-brand-amber text-lg mr-1">&#9733;</span>
+                            <span class="text-brand-amber text-lg mr-1">&#9733;</span>
+                            <span class="text-brand-amber text-lg">&#9733;</span>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow">"Kopi cold brew-nya juara! Rasanya pas, creamy, dan bikin nagih. Suasana juga adem banget."</p>
+                        <p class="font-semibold text-gray-800 dark:text-gray-100 text-sm">- Sarah M.</p>
+                    </div>
+                </div>
+                <!-- Ulasan 2 -->
+                <div class="w-[82vw] max-w-[320px] shrink-0 snap-center sm:w-auto sm:max-w-none pop-up-element" style="transition-delay: 240ms;">
+                    <div class="bg-white dark:bg-stone-900 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-stone-800 h-full flex flex-col">
+                        <div class="flex items-center mb-3">
+                            <span class="text-brand-amber text-lg mr-1">&#9733;</span>
+                            <span class="text-brand-amber text-lg mr-1">&#9733;</span>
+                            <span class="text-brand-amber text-lg mr-1">&#9733;</span>
+                            <span class="text-brand-amber text-lg mr-1">&#9733;</span>
+                            <span class="text-brand-amber text-lg">&#9733;</span>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow">"Tempatnya nyaman buat kerja atau hangout. Matcha lattenya enak, makanan juga variatif."</p>
+                        <p class="font-semibold text-gray-800 dark:text-gray-100 text-sm">- Budi P.</p>
+                    </div>
+                </div>
+                <!-- Ulasan 3 -->
+                <div class="w-[82vw] max-w-[320px] shrink-0 snap-center sm:w-auto sm:max-w-none pop-up-element" style="transition-delay: 320ms;">
+                    <div class="bg-white dark:bg-stone-900 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-stone-800 h-full flex flex-col">
+                        <div class="flex items-center mb-3">
+                            <span class="text-brand-amber text-lg mr-1">&#9733;</span>
+                            <span class="text-brand-amber text-lg mr-1">&#9733;</span>
+                            <span class="text-brand-amber text-lg mr-1">&#9733;</span>
+                            <span class="text-brand-amber text-lg mr-1">&#9733;</span>
+                            <span class="text-brand-amber text-lg">&#9733;</span>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow">"Pasta aglio olio seafood-nya mantap! Porsi pas, rasa otentik, dan udangnya fresh. Highly recommended!"</p>
+                        <p class="font-semibold text-gray-800 dark:text-gray-100 text-sm">- Citra L.</p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-8 sm:hidden">Geser ke samping &rarr;</p>
+        </div>
+    </section>
+
+    <!-- Lokasi & Jam Operasional Section -->
+    <section id="lokasi" class="py-16 md:py-20 bg-brand-sage-olive text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-extrabold mb-8 pop-up-element">
+                Lokasi Kami
+            </h2>
+            <div class="space-y-4 pop-up-element" style="transition-delay: 80ms;">
+                <p class="text-lg font-medium">Jl. Cimanuk No.2, Citarum, Kec. Bandung Wetan,</p>
+                <p class="text-lg font-medium">Kota Bandung, Jawa Barat 40115</p>
+                <div class="flex items-center justify-center gap-2 text-white/90">
+                    <i data-lucide="clock" class="w-5 h-5"></i>
+                    <p class="text-lg font-semibold">Setiap Hari, 07.00 – 23.00 WIB</p>
+                </div>
+            </div>
+            <a href="https://www.google.com/maps/place/Two+Cents/@-6.9146137,107.5459577,13z/data=!4m9!1m2!29m1!3se8175992-6bf2-4a45-8248-3d1214381c46!3m5!1s0x2e68e64ac4fb5ffb:0x8140ff766c5645b1!8m2!3d-6.9072695!4d107.6204746!16s%2Fg%2F11b6cgvrkc?authuser=0&entry=ttu&g_ep=EgoyMDI2MTExNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="mt-8 inline-flex items-center bg-brand-amber hover:bg-brand-deep-sage text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 text-lg pop-up-element" style="transition-delay: 160ms;">
+                <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i>
+                Buka di Google Maps
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-950 text-gray-300 dark:bg-black py-10 px-4">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center space-x-3">
+                <img src="./assets/img/logo.jpg" alt="Two Cents Coffee Logo" class="h-10 w-10 rounded-lg object-cover">
+                <span class="font-heading text-xl font-extrabold text-white">Two Cents — Brew Believer</span>
+            </div>
+            <div class="flex flex-col items-center md:items-start text-sm space-y-2">
+                <p>&copy; 2026 Two Cents Coffee. All rights reserved.</p>
+                <a href="https://www.instagram.com/twocents_coffee" target="_blank" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i data-lucide="instagram" class="w-4 h-4 mr-2"></i>
+                    @twocents_coffee
+                </a>
+                <a href="https://www.google.com/maps/place/Two+Cents/@-6.9146137,107.5459577,13z/data=!4m9!1m2!29m1!3se8175992-6bf2-4a45-8248-3d1214381c46!3m5!1s0x2e68e64ac4fb5ffb:0x8140ff766c5645b1!8m2!3d-6.9072695!4d107.6204746!16s%2Fg%2F11b6cgvrkc?authuser=0&entry=ttu&g_ep=EgoyMDI2MTExNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i data-lucide="map-pin" class="w-4 h-4 mr-2"></i>
+                    Jl. Cimanuk No.2, Bandung
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6281200000000?text=Halo%20Two%20Cents%2C%20saya%20ingin%20reservasi%20meja%20atau%20order." target="_blank" class="fixed bottom-5 right-5 z-40 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform duration-300" title="Hubungi kami via WhatsApp">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+    </a>
+
+    <script>
+        // Lucide Icons initialization
+        lucide.createIcons();
+
+        // Dark/Light Mode Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        const htmlElement = document.documentElement;
+
+        // Set initial theme based on localStorage or system preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+
+        function toggleTheme() {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+            // Re-render Lucide icons to update their SVG attributes based on the new theme
+            lucide.createIcons();
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        themeToggleMobile.addEventListener('click', toggleTheme);
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // Change icon
+            const menuIcon = mobileMenuButton.querySelector('i[data-lucide]');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.setAttribute('data-lucide', 'menu');
+            } else {
+                menuIcon.setAttribute('data-lucide', 'x');
+            }
+            lucide.createIcons();
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.querySelector('i[data-lucide]').setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+
+
+        // Navbar Scroll Effect (Glassmorphism)
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.remove('bg-black/25', 'backdrop-blur-[2px]', 'border-white/10');
+                navbar.classList.add('bg-white/80', 'dark:bg-slate-950/80', 'backdrop-blur-md', 'border-slate-200/60', 'dark:border-slate-800/60', 'shadow-sm');
+                // Adjust text color for better contrast
+                navbar.querySelectorAll('a:not(.bg-brand-amber), button:not(#theme-toggle):not(#theme-toggle-mobile)').forEach(el => {
+                    if (!el.classList.contains('text-white')) { // Avoid changing CTA button text color
+                        el.classList.remove('text-white');
+                        el.classList.add('text-gray-800', 'dark:text-gray-100');
+                    }
+                });
+                navbar.querySelector('span.font-heading').classList.remove('text-white');
+                navbar.querySelector('span.font-heading').classList.add('text-gray-800', 'dark:text-gray-100');
+            } else {
+                navbar.classList.remove('bg-white/80', 'dark:bg-slate-950/80', 'backdrop-blur-md', 'border-slate-200/60', 'dark:border-slate-800/60', 'shadow-sm');
+                navbar.classList.add('bg-black/25', 'backdrop-blur-[2px]', 'border-white/10');
+                // Revert text color
+                 navbar.querySelectorAll('a:not(.bg-brand-amber), button:not(#theme-toggle):not(#theme-toggle-mobile)').forEach(el => {
+                    if (el.classList.contains('text-gray-800') || el.classList.contains('dark:text-gray-100')) {
+                        el.classList.remove('text-gray-800', 'dark:text-gray-100');
+                        el.classList.add('text-white');
+                    }
+                });
+                navbar.querySelector('span.font-heading').classList.remove('text-gray-800', 'dark:text-gray-100');
+                navbar.querySelector('span.font-heading').classList.add('text-white');
+            }
+        });
+
+
+        // Pop-up Transition (IntersectionObserver)
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Staggered delay for child elements
+                    if (entry.target.classList.contains('flex') || entry.target.classList.contains('grid')) {
+                        Array.from(entry.target.children).forEach((child, index) => {
+                            child.style.transitionDelay = `${(index * 80) + 80}ms`; // Start delay from 80ms
+                        });
+                    }
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.pop-up-element').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Animate Hero section elements on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('#hero .pop-up-element').forEach(element => {
+                element.classList.add('is-visible');
+            });
+        });
+
+    </script>
+</body>
+</html>
