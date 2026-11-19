@@ -72,7 +72,6 @@
             <div class="hidden md:flex items-center space-x-6">
                 <a href="#keunggulan" class="text-white hover:text-brand-amber dark:hover:text-brand-amber transition-colors font-medium">Keunggulan</a>
                 <a href="#menu" class="text-white hover:text-brand-amber dark:hover:text-brand-amber transition-colors font-medium">Menu</a>
-                <a href="#lokasi" class="text-white hover:text-brand-amber dark:hover:text-brand-amber transition-colors font-medium">Lokasi</a>
                 <!-- Dark/Light Mode Toggle -->
                 <button id="theme-toggle" class="p-2 rounded-full focus:outline-none text-white hover:bg-white/20 dark:hover:bg-black/20 transition-colors">
                     <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
@@ -99,7 +98,6 @@
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
                 <a href="#keunggulan" class="text-gray-800 dark:text-gray-100 hover:text-brand-amber dark:hover:text-brand-amber block px-3 py-2 rounded-md text-base font-medium">Keunggulan</a>
                 <a href="#menu" class="text-gray-800 dark:text-gray-100 hover:text-brand-amber dark:hover:text-brand-amber block px-3 py-2 rounded-md text-base font-medium">Menu</a>
-                <a href="#lokasi" class="text-gray-800 dark:text-gray-100 hover:text-brand-amber dark:hover:text-brand-amber block px-3 py-2 rounded-md text-base font-medium">Lokasi</a>
                 <a href="https://wa.me/6281200000000?text=Halo%20Two%20Cents%2C%20saya%20ingin%20reservasi%20meja." target="_blank" class="w-auto text-center mt-4 bg-brand-amber hover:bg-brand-deep-sage text-white font-semibold py-2 px-5 rounded-lg shadow-md transition-all duration-300">
                     Reservasi Meja
                 </a>
@@ -333,45 +331,58 @@
         </div>
     </section>
 
-    <!-- Lokasi & Jam Operasional Section -->
-    <section id="lokasi" class="py-16 md:py-20 bg-brand-sage-olive text-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-extrabold mb-8 pop-up-element">
-                Lokasi Kami
-            </h2>
-            <div class="space-y-4 pop-up-element" style="transition-delay: 80ms;">
-                <p class="text-lg font-medium">Jl. Cimanuk No.2, Citarum, Kec. Bandung Wetan,</p>
-                <p class="text-lg font-medium">Kota Bandung, Jawa Barat 40115</p>
-                <div class="flex items-center justify-center gap-2 text-white/90">
-                    <i data-lucide="clock" class="w-5 h-5"></i>
-                    <p class="text-lg font-semibold">Setiap Hari, 07.00 – 23.00 WIB</p>
-                </div>
-            </div>
-            <a href="https://www.google.com/maps/place/Two+Cents/@-6.9146137,107.5459577,13z/data=!4m9!1m2!29m1!3se8175992-6bf2-4a45-8248-3d1214381c46!3m5!1s0x2e68e64ac4fb5ffb:0x8140ff766c5645b1!8m2!3d-6.9072695!4d107.6204746!16s%2Fg%2F11b6cgvrkc?authuser=0&entry=ttu&g_ep=EgoyMDI2MTExNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="mt-8 inline-flex items-center bg-brand-amber hover:bg-brand-deep-sage text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 text-lg pop-up-element" style="transition-delay: 160ms;">
-                <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i>
-                Buka di Google Maps
-            </a>
-        </div>
-    </section>
-
     <!-- Footer -->
-    <footer class="bg-stone-950 text-gray-300 dark:bg-black py-10 px-4">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center space-x-3">
-                <img src="./assets/img/logo.jpg" alt="Two Cents Coffee Logo" class="h-10 w-10 rounded-lg object-cover">
-                <span class="font-heading text-xl font-extrabold text-white">Two Cents — Brew Believer</span>
-            </div>
-            <div class="flex flex-col items-center md:items-start text-sm space-y-2">
-                <p>&copy; 2026 Two Cents Coffee. All rights reserved.</p>
-                <a href="https://www.instagram.com/twocents_coffee" target="_blank" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                    <i data-lucide="instagram" class="w-4 h-4 mr-2"></i>
+    <footer class="bg-stone-100 dark:bg-stone-950 border-t border-stone-200 dark:border-stone-800 py-16 md:py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-10 pop-up-element">
+            <!-- Kolom 1 — Identitas Brand & Sosial Media -->
+            <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                <div class="flex items-center space-x-3 mb-4">
+                    <img src="./assets/img/logo.jpg" alt="Two Cents Coffee Logo" class="h-12 w-12 rounded-lg object-cover">
+                    <span class="font-heading text-2xl font-extrabold text-gray-800 dark:text-white">Two Cents</span>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 mb-6 max-w-xs">Specialty Coffee Roastery, Manual Brew & Courtyard Space di kawasan Cimanuk, Bandung.</p>
+                <a href="https://www.instagram.com/twocents_coffee" target="_blank" class="inline-flex items-center px-6 py-3 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-brand-amber hover:border-brand-amber hover:text-white transition-all duration-300">
+                    <i data-lucide="instagram" class="w-5 h-5 mr-2"></i>
                     @twocents_coffee
                 </a>
-                <a href="https://www.google.com/maps/place/Two+Cents/@-6.9146137,107.5459577,13z/data=!4m9!1m2!29m1!3se8175992-6bf2-4a45-8248-3d1214381c46!3m5!1s0x2e68e64ac4fb5ffb:0x8140ff766c5645b1!8m2!3d-6.9072695!4d107.6204746!16s%2Fg%2F11b6cgvrkc?authuser=0&entry=ttu&g_ep=EgoyMDI2MTExNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                    <i data-lucide="map-pin" class="w-4 h-4 mr-2"></i>
-                    Jl. Cimanuk No.2, Bandung
-                </a>
             </div>
+
+            <!-- Kolom 2 — Navigasi Cepat -->
+            <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                <h3 class="font-heading text-xl font-bold text-gray-900 dark:text-white mb-6">Navigasi Cepat</h3>
+                <nav class="space-y-4">
+                    <a href="#keunggulan" class="block text-gray-600 dark:text-gray-400 hover:text-brand-amber transition-colors text-lg">Keunggulan</a>
+                    <a href="#menu" class="block text-gray-600 dark:text-gray-400 hover:text-brand-amber transition-colors text-lg">Menu</a>
+                    <a href="#ulasan" class="block text-gray-600 dark:text-gray-400 hover:text-brand-amber transition-colors text-lg">Ulasan Pelanggan</a>
+                    <a href="https://www.google.com/maps/place/Two+Cents/@-6.9146137,107.5459577,13z/data=!4m9!1m2!29m1!3se8175992-6bf2-4a45-8248-3d1214381c46!3m5!1s0x2e68e64ac4fb5ffb:0x8140ff766c5645b1!8m2!3d-6.9072695!4d107.6204746!16s%2Fg%2F11b6cgvrkc?authuser=0&entry=ttu&g_ep=EgoyMDI2MTExNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="block text-gray-600 dark:text-gray-400 hover:text-brand-amber transition-colors text-lg">Buka Google Maps</a>
+                </nav>
+            </div>
+
+            <!-- Kolom 3 — Lokasi, Jam Operasional & Aksi -->
+            <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                <h3 class="font-heading text-xl font-bold text-gray-900 dark:text-white mb-6">Lokasi & Jam Buka</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4 max-w-xs">Jl. Cimanuk No.2, Citarum, Kec. Bandung Wetan, Kota Bandung, Jawa Barat 40115</p>
+                <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-6">
+                    <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                    <p class="text-lg font-semibold">Buka Setiap Hari • 07.00 – 23.00 WIB</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 w-full justify-center md:justify-start">
+                    <a href="https://www.google.com/maps/place/Two+Cents/@-6.9146137,107.5459577,13z/data=!4m9!1m2!29m1!3se8175992-6bf2-4a45-8248-3d1214381c46!3m5!1s0x2e68e64ac4fb5ffb:0x8140ff766c5645b1!8m2!3d-6.9072695!4d107.6204746!16s%2Fg%2F11b6cgvrkc?authuser=0&entry=ttu&g_ep=EgoyMDI2MTExNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="flex-1 sm:flex-none inline-flex items-center justify-center bg-brand-amber hover:bg-brand-deep-sage text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-300 text-base">
+                        <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i>
+                        Buka di Google Maps
+                    </a>
+                    <a href="https://wa.me/6281200000000?text=Halo%20Two%20Cents%2C%20saya%20ingin%20reservasi%20meja%20atau%20order." target="_blank" class="flex-1 sm:flex-none inline-flex items-center justify-center border border-brand-amber text-brand-amber hover:bg-brand-amber hover:text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-300 text-base">
+                        <i data-lucide="whatsapp" class="w-5 h-5 mr-2"></i>
+                        Reservasi Meja
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar Footer -->
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-stone-300 dark:border-stone-700 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 dark:text-gray-400 pop-up-element">
+            <p class="mb-4 md:mb-0">© 2026 Two Cents — Brew Believer</p>
+            <p>Specialty Coffee • Roastery • All-Day Dining</p>
         </div>
     </footer>
 
